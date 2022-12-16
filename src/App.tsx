@@ -5,7 +5,9 @@ function App() {
 	return (
 		<>
 			<H1>Teste</H1>
-			<Button ButtonSize="medium">Your Sis</Button>
+			<Button ButtonSize="medium" ButtonBackground="gray">
+				Your Sis
+			</Button>
 		</>
 	);
 }

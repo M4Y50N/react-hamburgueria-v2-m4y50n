@@ -30,7 +30,11 @@ export const StyledButton = styled.button`
 		return (
 			ButtonBackground === "gray" &&
 			css`
-				background-color: var(--color-gray-100);
+				background-color: var(--color-gray-300);
+
+				&:hover {
+					background-color: var(--color-gray-600);
+				}
 			`
 		);
 	}}

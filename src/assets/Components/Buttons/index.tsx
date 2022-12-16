@@ -6,11 +6,7 @@ interface iButton {
 	children: string;
 }
 
-export const Button: React.FC<iButton> = ({
-	ButtonSize,
-	ButtonBackground,
-	children,
-}) => {
+export const Button = ({ ButtonSize, ButtonBackground, children }: iButton) => {
 	return (
 		<StyledButton ButtonSize={ButtonSize} ButtonBackground={ButtonBackground}>
 			{children}
