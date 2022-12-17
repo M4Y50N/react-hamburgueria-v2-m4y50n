@@ -1,11 +1,23 @@
 import { createGlobalStyle } from "styled-components";
 
 export const Global = createGlobalStyle`
+    /* @font-face {
+        font-family: "Insanibu";
+        src: local("Insanibu"),
+            url("../fonts/Insanibu.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+    } */
+
+
     :root{
 
         /* Color */
-        --color-primary: #27AE60;
-        --color-secondary: #EB5757;
+        --color-primary:#FF8233;
+        --color-secondary: #D62300;
+        --color-tertiary: #502314;
+
+        --color-background: #F5EBDC;
         
         --color-gray-600: #333333;
         --color-gray-300: #828282;
@@ -18,7 +30,7 @@ export const Global = createGlobalStyle`
         --color-information: #155bcb;
 
         /* Font */
-        --font-family: 'Inter', sans-serif;
+        --font-family: "Inter", sans-serif;
 
         --fz-heading-1: 2.6rem;
         --fz-heading-2: 2.2rem;
@@ -29,20 +41,19 @@ export const Global = createGlobalStyle`
         --fz-body: 1.4rem;
         --fz-caption: 1.2rem;
 
-        --fw-bold: 600;
-        --fw-semibold: 500;
+        --fw-bold: 800;
+        --fw-semibold: 600;
         --fw-regular: 400;
         
         font-size: 62.5%;
 
         /* Round */
-        --radius-1: 0.3rem;
-        --radius-2: 0.5rem;
+        --radius: .7rem;
     }
 
-    /* #root{
+    #root{
         height: 100%;
-    } */
+    }
 
     /* ScrollBar */
     /* width */
