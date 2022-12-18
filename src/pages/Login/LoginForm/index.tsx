@@ -10,7 +10,7 @@ interface FormData {
 	password: string;
 }
 
-interface iData {
+interface iFormLoginData {
 	email: string;
 	password: string;
 }
@@ -20,7 +20,7 @@ export const LoginForm = () => {
 
 	const { register, handleSubmit } = useForm<FormData>();
 
-	const submit: SubmitHandler<iData> = (data) => {
+	const submit: SubmitHandler<iFormLoginData> = (data) => {
 		userLogin(data);
 	};
 
