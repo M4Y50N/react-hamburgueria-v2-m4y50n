@@ -1,13 +1,17 @@
-import { Button } from "./assets/Components/Buttons";
-import { H1 } from "./assets/styles/Typography";
+import { Global } from "./assets/styles/Global";
+import { Reset } from "./assets/styles/Reset";
+import { UserProvider } from "./providers/UserContext";
+
+import { RoutesMain as Routes } from "./routes";
 
 function App() {
 	return (
 		<>
-			<H1>Teste</H1>
-			<Button ButtonSize="medium" ButtonBackground="gray">
-				Your Sis
-			</Button>
+			<Global />
+			<Reset />
+			<UserProvider>
+				<Routes />
+			</UserProvider>
 		</>
 	);
 }

@@ -12,8 +12,9 @@ export const Reset = createGlobalStyle`
     }
     body {
         font-family: var(--font-family);
-        background: var(--color-background);
-        color: var(--color-text);
+        font-size: var(--fz-body);
+        background: var(--color-gray-0);
+        color: var(--color-tertiary);
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
     
