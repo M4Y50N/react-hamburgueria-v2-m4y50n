@@ -6,10 +6,11 @@ type iButtonInfo = {
 };
 
 export const StyledButton = styled.button`
-	padding: 3rem;
-	color: var(--color-gray-0);
-	background-color: var(--color-primary);
-	border-radius: var(--radius-2);
+	padding: 1.7rem;
+	color: var(--color-background);
+	font-weight: var(--fw-bold);
+	background-color: var(--color-secondary);
+	border-radius: var(--radius);
 
 	transition: all 0.3s ease;
 
@@ -21,7 +22,8 @@ export const StyledButton = styled.button`
 		return (
 			ButtonSize === "medium" &&
 			css`
-				padding: 1rem;
+				padding: 1rem 1.5rem;
+				height: fit-content;
 			`
 		);
 	}}
