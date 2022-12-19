@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 interface iContainer {
 	Alignment?: string;
+	Height?: string;
 }
 
 export const Container = styled.div`
@@ -9,11 +10,11 @@ export const Container = styled.div`
 	width: 100%;
 	max-width: 120rem;
 
-	${({ Alignment }: iContainer) => {
+	${({ Alignment, Height }: iContainer) => {
 		return (
 			Alignment === "center" &&
 			css`
-				height: 100%;
+				height: ${Height};
 				display: flex;
 				align-items: center;
 				justify-content: center;

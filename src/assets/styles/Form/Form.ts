@@ -5,7 +5,4 @@ export const StyledForm = styled.form`
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
-
-	/* border-radius: var(--radius);
-	box-shadow: 0 0 0.5rem var(--color-gray-600); */
 `;
