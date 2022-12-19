@@ -63,7 +63,7 @@ export const RegisterForm = () => {
 				register={register("confirm_password")}
 				autoComplete="on"
 			/>
-			<Button>Entrar</Button>
+			<Button>Cadastro</Button>
 		</StyledForm>
 	);
 };
