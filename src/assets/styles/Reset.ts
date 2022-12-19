@@ -19,21 +19,29 @@ export const Reset = createGlobalStyle`
         overflow-x: hidden;
     
     }
-    /* body, input, button, textarea {
-        font-family: var(--font-family);
-        font-size: 1.6rem;
-    } */
+    
+    
     h1, h2, h3, h4, h5, h6, strong {
         font-weight: 500;
     }
+
     button{
         cursor: pointer;
+
+        font-family: "FlameSans", sans-serif;
+
         border: none;
         background: transparent;
     }
+
+    input{
+        font-family: "FlameSans", sans-serif;
+    }
+
     a{
         color: unset;
         text-decoration: none;
+
     }
     ul, ol, li{
         list-style: none;

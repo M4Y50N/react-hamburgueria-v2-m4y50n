@@ -25,9 +25,9 @@ export const StyledContainer = styled.div`
 		border-radius: var(--radius);
 
 		transition: all 0.3s ease;
-	}
 
-	& > input:focus {
-		outline: 1px solid var(--color-tertiary);
+		&:focus {
+			outline: 1px solid var(--color-tertiary);
+		}
 	}
 `;

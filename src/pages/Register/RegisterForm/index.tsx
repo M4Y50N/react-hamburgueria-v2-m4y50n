@@ -5,36 +5,40 @@ import { Input } from "../../../Components/Input";
 import { useContext } from "react";
 import { UserContext } from "../../../providers/UserContext";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "./loginSchema";
+import { RegisterSchema } from "./registerSchema";
 
-interface FormData {
+interface iFormRegisterData {
+	name: string;
 	email: string;
 	password: string;
+	confirm_password: string;
 }
 
-interface iFormLoginData {
-	email: string;
-	password: string;
-}
-
-export const LoginForm = () => {
-	const { userLogin } = useContext(UserContext);
+export const RegisterForm = () => {
+	const { userRegister } = useContext(UserContext);
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>({
+	} = useForm<iFormRegisterData>({
 		mode: "onChange",
-		resolver: yupResolver(loginSchema),
+		resolver: yupResolver(RegisterSchema),
 	});
 
-	const submit: SubmitHandler<iFormLoginData> = (data) => {
-		userLogin(data);
+	const submit: SubmitHandler<iFormRegisterData> = (data) => {
+		userRegister(data);
 	};
 
 	return (
 		<StyledForm onSubmit={handleSubmit(submit)}>
+			<Input
+				id="name"
+				type="text"
+				placeholder="Nome"
+				error={errors.name}
+				register={register("name")}
+			/>
 			<Input
 				id="email"
 				type="text"
@@ -42,12 +46,21 @@ export const LoginForm = () => {
 				error={errors.email}
 				register={register("email")}
 			/>
+
 			<Input
 				id="password"
 				type="password"
 				placeholder="Senha"
 				error={errors.password}
 				register={register("password")}
+				autoComplete="on"
+			/>
+			<Input
+				id="confirm_password"
+				type="password"
+				placeholder="Confirmar Senha"
+				error={errors.confirm_password}
+				register={register("confirm_password")}
 				autoComplete="on"
 			/>
 			<Button>Entrar</Button>

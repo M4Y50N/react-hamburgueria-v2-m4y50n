@@ -23,6 +23,7 @@ export const H2 = styled.h2`
 export const H3 = styled.h3`
 	font-size: var(--fz-heading-3);
 	font-weight: var(--fw-bold);
+	color: ${({ Color }: iStyles) => Color};
 `;
 
 export const Headline = styled.p`

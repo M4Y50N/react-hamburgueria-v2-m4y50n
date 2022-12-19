@@ -22,8 +22,17 @@ interface iFormRegisterData {
 	password: string;
 }
 
+interface iProducts {
+	id: number;
+	img: string;
+	name: string;
+	category: string;
+	price: number;
+}
+
 interface iUserContext {
 	user: iUser | null;
+	products: iProducts[];
 	userLogin: (formData: iFormLoginData) => void;
 	userRegister: (formData: iFormRegisterData) => void;
 	userLogout: () => void;
@@ -32,15 +41,39 @@ interface iUserContext {
 export const UserContext = createContext({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserProvider) => {
-	const [user, setUser] = useState<iUser | null>(null);
+	const [user, setUser] = useState<iUser | null>(null),
+		[products, setProducts] = useState([]);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (user) {
-			navigate("/products");
-		}
-	}, [navigate, user]);
+		const loadUser = async () => {
+			const token = localStorage.getItem("@TOKEN"),
+				userData = JSON.parse(localStorage.getItem("@USER") as string) || null;
+
+			if (!token) {
+				return;
+			}
+
+			try {
+				api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+				const response = await api.get("/products");
+
+				const data = response.data;
+
+				setProducts(data);
+				setUser(userData);
+
+				navigate("/products", { replace: true });
+			} catch (error) {
+				console.log(error);
+				localStorage.clear();
+			}
+		};
+
+		loadUser();
+	}, [navigate]);
 
 	const userLogin = async (data: iFormLoginData) => {
 		try {
@@ -52,6 +85,10 @@ export const UserProvider = ({ children }: iUserProvider) => {
 			localStorage.setItem("@USER", JSON.stringify(userData));
 
 			setUser(userData);
+
+			api.defaults.headers.common.authorization = `Bearer ${accessToken}`;
+
+			navigate("/products", { replace: true });
 		} catch (error) {
 			console.log(error);
 		}
@@ -64,9 +101,11 @@ export const UserProvider = ({ children }: iUserProvider) => {
 			const { accessToken, user: userData } = response.data;
 
 			localStorage.setItem("@TOKEN", accessToken);
-			localStorage.setItem("@USER", userData);
+			localStorage.setItem("@USER", JSON.stringify(userData));
 
 			setUser(userData);
+
+			navigate("/", { replace: true });
 		} catch (error) {
 			console.log(error);
 		}
@@ -80,7 +119,9 @@ export const UserProvider = ({ children }: iUserProvider) => {
 	};
 
 	return (
-		<UserContext.Provider value={{ user, userLogin, userRegister, userLogout }}>
+		<UserContext.Provider
+			value={{ user, products, userLogin, userRegister, userLogout }}
+		>
 			{children}
 		</UserContext.Provider>
 	);
