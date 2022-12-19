@@ -3,8 +3,11 @@ import styled from "styled-components";
 export const StyledFormContainer = styled.div`
 	margin: 0 auto;
 	padding: 2.3rem 1rem;
+
 	width: 100%;
 	max-width: 43rem;
+	height: fit-content;
+
 	display: flex;
 	flex-direction: column;
 	row-gap: 3rem;

@@ -24,9 +24,10 @@ interface iFormRegisterData {
 
 interface iProducts {
 	id: number;
+	img: string;
 	name: string;
 	category: string;
-	img: string;
+	price: number;
 }
 
 interface iUserContext {
@@ -100,9 +101,11 @@ export const UserProvider = ({ children }: iUserProvider) => {
 			const { accessToken, user: userData } = response.data;
 
 			localStorage.setItem("@TOKEN", accessToken);
-			localStorage.setItem("@USER", userData);
+			localStorage.setItem("@USER", JSON.stringify(userData));
 
 			setUser(userData);
+
+			navigate("/", { replace: true });
 		} catch (error) {
 			console.log(error);
 		}

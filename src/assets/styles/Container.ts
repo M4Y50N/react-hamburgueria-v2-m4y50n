@@ -2,23 +2,35 @@ import styled, { css } from "styled-components";
 
 interface iContainer {
 	Alignment?: string;
-	Height?: string;
+	Color?: string;
+	BoxShadow?: string;
 }
 
 export const Container = styled.div`
+	margin: 0 auto;
 	padding: 1rem;
 	width: 100%;
 	max-width: 120rem;
 
-	${({ Alignment, Height }: iContainer) => {
+	${({ Alignment }: iContainer) => {
 		return (
 			Alignment === "center" &&
 			css`
-				height: ${Height};
 				display: flex;
 				align-items: center;
 				justify-content: center;
 			`
 		);
 	}}
+
+	${({ Color, BoxShadow }: iContainer) => {
+		return css`
+			color: ${Color};
+			box-shadow: ${BoxShadow};
+		`;
+	}}
+
+	@media (min-width: 880px) {
+		height: 100%;
+	}
 `;

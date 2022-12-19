@@ -22,7 +22,8 @@ export const StyledButton = styled.button`
 		return (
 			ButtonSize === "medium" &&
 			css`
-				padding: 1rem;
+				padding: 1rem 1.5rem;
+				height: fit-content;
 			`
 		);
 	}}

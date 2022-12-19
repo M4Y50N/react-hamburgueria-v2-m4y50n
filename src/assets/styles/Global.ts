@@ -1,13 +1,13 @@
 import { createGlobalStyle } from "styled-components";
+import FlameSans from "../fonts/FlameSans.ttf";
 
 export const Global = createGlobalStyle`
-    /* @font-face {
-        font-family: "Insanibu";
-        src: local("Insanibu"),
-            url("../fonts/Insanibu.ttf") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-    } */
+    @font-face {
+        font-family: "FlameSans";
+        src: local(${FlameSans}),
+         
+            url(${FlameSans}) format("truetype");
+    }
 
 
     :root{
@@ -16,6 +16,7 @@ export const Global = createGlobalStyle`
         --color-primary:#FF8233;
         --color-secondary: #D62300;
         --color-tertiary: #502314;
+        --color-tertiary-transparent: #50231422 ;
 
         --color-background: #F5EBDC;
         
@@ -30,7 +31,7 @@ export const Global = createGlobalStyle`
         --color-information: #155bcb;
 
         /* Font */
-        --font-family: "Inter", sans-serif;
+        --font-family: "FlameSans", sans-serif;
 
         --fz-heading-1: 2.6rem;
         --fz-heading-2: 2.2rem;
