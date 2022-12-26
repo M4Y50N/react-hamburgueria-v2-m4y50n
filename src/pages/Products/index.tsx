@@ -8,7 +8,7 @@ import { Header } from "./components/Header";
 import { StyledProduct, StyledProducts } from "./styles";
 
 export const Products = () => {
-	const { products } = useContext(UserContext),
+	const { filteredArray } = useContext(UserContext),
 		{ addProductInCart } = useContext(CartContext);
 
 	return (
@@ -16,7 +16,7 @@ export const Products = () => {
 			<Header />
 			<Container>
 				<StyledProducts>
-					{products.map((product, i) => {
+					{filteredArray.map((product, i) => {
 						return (
 							<StyledProduct key={i}>
 								<div className="product_head">

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import kenzieburguer from "../../../../assets/imgs/kenzieburguer.png";
 import { Container } from "../../../../assets/styles/Container";
 import { H3, Headline } from "../../../../assets/styles/Typography";
@@ -15,9 +15,10 @@ import { StyledHeader } from "./styles";
 import trash from "../../../../assets/imgs/trash.svg";
 import logout from "../../../../assets/imgs/logout.svg";
 import cartIcon from "../../../../assets/imgs/cart.svg";
+import search from "../../../../assets/imgs/search.svg";
 
 export const Header = () => {
-	const { userLogout } = useContext(UserContext);
+	const { userLogout, filterSearch } = useContext(UserContext);
 
 	const {
 		showModal,
@@ -30,6 +31,12 @@ export const Header = () => {
 		decreaseProductCart,
 		rmvProductCart,
 	} = useContext(CartContext);
+
+	const [showSearch, setShowSearch] = useState(false);
+
+	useEffect(() => {
+		console.log(showSearch);
+	}, [showSearch]);
 
 	return (
 		<StyledHeader>
@@ -126,21 +133,56 @@ export const Header = () => {
 				</Modal>
 			)}
 			<Container>
-				<img src={kenzieburguer} alt="kenzie burguer" />
+				{!showSearch ? (
+					<>
+						<img src={kenzieburguer} alt="kenzie burguer" />
 
-				<div className="buttons">
-					<Button
-						onClick={() => {
-							setShowModal(true);
-						}}
-					>
-						<img src={cartIcon} alt="cart icon" />
-						<span>{cart.length}</span>
-					</Button>
-					<Button ButtonSize="medium" onClick={userLogout}>
-						<img src={logout} alt="logout" />
-					</Button>
-				</div>
+						<div className="actions">
+							<div className="search_box">
+								<input
+									type="text"
+									onChange={filterSearch}
+									placeholder="Digitar Pesquisa"
+								/>
+								<button
+									onClick={() => {
+										setShowSearch(!showSearch);
+									}}
+								>
+									<img src={search} alt="search" />
+								</button>
+							</div>
+							<Button
+								onClick={() => {
+									setShowModal(true);
+								}}
+							>
+								<img src={cartIcon} alt="cart icon" />
+								<span>{cart.length}</span>
+							</Button>
+							<Button ButtonSize="medium" onClick={userLogout}>
+								<img src={logout} alt="logout" />
+							</Button>
+						</div>
+					</>
+				) : (
+					<div className="maximized">
+						<div className="">
+							<input
+								type="text"
+								onChange={filterSearch}
+								placeholder="Digitar Pesquisa"
+							/>
+							<button
+								onClick={() => {
+									setShowSearch(!showSearch);
+								}}
+							>
+								<img src={search} alt="search" />
+							</button>
+						</div>
+					</div>
+				)}
 			</Container>
 		</StyledHeader>
 	);
