@@ -89,7 +89,7 @@ export const CartProvider = ({ children }: iCartProvider) => {
 
 	const increaseProductCart = (id: number, price: number) => {
 		const updateCart = cart.map((item) =>
-			item.id === id ? { ...item, count: ++item.count } : item
+			item.id === id ? { ...item, count: item.count + 1 } : item
 		);
 		setCart(updateCart);
 		setTotal(total + price);
@@ -97,7 +97,7 @@ export const CartProvider = ({ children }: iCartProvider) => {
 
 	const decreaseProductCart = (id: number, price: number) => {
 		const updateCart = cart.map((item) =>
-			item.id === id ? { ...item, count: --item.count } : item
+			item.id === id ? { ...item, count: item.count - 1 } : item
 		);
 
 		setCart(updateCart);

@@ -100,7 +100,7 @@ export const Header = () => {
 								<StyledTotal>
 									<div className="total">
 										<p>Total</p>
-										<p>R$ {total}</p>
+										<p>R$ {total.toFixed(2)}</p>
 									</div>
 
 									<Button
@@ -135,6 +135,7 @@ export const Header = () => {
 						}}
 					>
 						<img src={cartIcon} alt="cart icon" />
+						<span>{cart.length}</span>
 					</Button>
 					<Button ButtonSize="medium" onClick={userLogout}>
 						<img src={logout} alt="logout" />
