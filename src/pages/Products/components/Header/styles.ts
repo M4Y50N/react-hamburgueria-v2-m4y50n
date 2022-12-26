@@ -23,6 +23,22 @@ export const StyledHeader = styled.header`
 				:hover {
 					filter: brightness(1.3);
 				}
+
+				:first-child {
+					position: relative;
+
+					span {
+						position: absolute;
+						top: -17px;
+						right: -7px;
+
+						padding: 0.3rem 0.4rem;
+
+						background-color: var(--color-tertiary);
+
+						border-radius: var(--radius);
+					}
+				}
 			}
 		}
 
