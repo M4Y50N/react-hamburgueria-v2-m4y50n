@@ -33,6 +33,8 @@ interface iProducts {
 interface iUserContext {
 	user: iUser | null;
 	products: iProducts[];
+	filteredArray: iProducts[];
+	filterSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	userLogin: (formData: iFormLoginData) => void;
 	userRegister: (formData: iFormRegisterData) => void;
 	userLogout: () => void;
@@ -42,7 +44,8 @@ export const UserContext = createContext({} as iUserContext);
 
 export const UserProvider = ({ children }: iUserProvider) => {
 	const [user, setUser] = useState<iUser | null>(null),
-		[products, setProducts] = useState([]);
+		[products, setProducts] = useState<iProducts[]>([]),
+		[filter, setFilter] = useState("todos");
 
 	const navigate = useNavigate();
 
@@ -118,9 +121,29 @@ export const UserProvider = ({ children }: iUserProvider) => {
 		navigate("/");
 	};
 
+	//Filter
+	const filterSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setFilter(!event.target.value.trim() ? "todos" : event.target.value);
+	};
+
+	const filteredArray = products.filter((item) => {
+		return filter.toLocaleLowerCase() === "todos"
+			? true
+			: item.name.toLowerCase().includes(filter.toLowerCase()) ||
+					item.category.toLowerCase().includes(filter.toLowerCase());
+	});
+
 	return (
 		<UserContext.Provider
-			value={{ user, products, userLogin, userRegister, userLogout }}
+			value={{
+				user,
+				products,
+				filterSearch,
+				filteredArray,
+				userLogin,
+				userRegister,
+				userLogout,
+			}}
 		>
 			{children}
 		</UserContext.Provider>

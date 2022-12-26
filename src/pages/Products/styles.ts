@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { leftAppear } from "../../assets/styles/Animations";
 
 export const StyledProducts = styled.ul`
 	padding: 5rem 1rem;
@@ -20,6 +21,8 @@ export const StyledProduct = styled.li`
 	box-shadow: 0 0 5px var(--color-tertiary);
 
 	transition: all 0.3s ease;
+
+	animation: ${leftAppear} 0.3s ease;
 
 	:hover {
 		transform: translateY(-1rem);
