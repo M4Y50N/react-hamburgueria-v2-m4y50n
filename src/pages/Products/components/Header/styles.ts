@@ -4,7 +4,7 @@ export const StyledHeader = styled.header`
 	padding: 0 1rem;
 	box-shadow: 0 0 0.5rem var(--color-tertiary);
 
-	div {
+	> div:last-child {
 		margin: 0 auto;
 
 		display: flex;

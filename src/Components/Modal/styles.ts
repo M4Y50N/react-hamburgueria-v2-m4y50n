@@ -5,24 +5,28 @@ export const StyledModal = styled.div`
 	top: 0;
 	left: 0;
 
-	padding-top: 10rem;
-
 	width: 100%;
 	height: 100%;
-	display: flex;
-	/* align-items: center; */
-	justify-content: center;
+
+	padding-top: 10rem;
+
 	background-color: #33333355;
 
 	.modal {
+		margin: 0 auto;
+
 		width: 100%;
-		max-width: 350px;
+		max-width: 450px;
 		height: fit-content;
+
 		background-color: var(--color-gray-0);
+		box-shadow: 0 0 5px var(--color-gray-300);
 		border-radius: var(--radius);
 
 		.cart_title {
 			padding: 1.2rem;
+
+			width: 100%;
 
 			display: flex;
 			align-items: center;
@@ -38,14 +42,21 @@ export const StyledModal = styled.div`
 
 		.cart_body {
 			text-align: center;
-			padding: 5rem 0;
+
+			max-height: 350px;
 
 			display: flex;
 			flex-direction: column;
 			row-gap: 1rem;
 
+			overflow-y: auto;
+
 			p {
 				color: var(--color-gray-300);
+			}
+
+			.empty {
+				padding: 5rem 0;
 			}
 		}
 	}

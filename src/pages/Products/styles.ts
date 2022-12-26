@@ -34,6 +34,8 @@ export const StyledProduct = styled.li`
 		height: 15rem;
 
 		background-color: var(--color-tertiary-transparent);
+
+		overflow: hidden;
 	}
 
 	.product_body {
