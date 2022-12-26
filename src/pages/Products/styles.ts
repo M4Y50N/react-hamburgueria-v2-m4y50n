@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledProducts = styled.ul`
-	padding: 5rem 0;
+	padding: 5rem 1rem;
 	display: flex;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
@@ -11,7 +11,7 @@ export const StyledProducts = styled.ul`
 
 export const StyledProduct = styled.li`
 	width: 100%;
-	max-width: 300px;
+	max-width: 320px;
 
 	display: flex;
 	flex-direction: column;
@@ -34,6 +34,8 @@ export const StyledProduct = styled.li`
 		height: 15rem;
 
 		background-color: var(--color-tertiary-transparent);
+
+		overflow: hidden;
 	}
 
 	.product_body {

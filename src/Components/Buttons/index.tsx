@@ -3,7 +3,7 @@ import { StyledButton } from "./styles";
 interface iButton {
 	ButtonSize?: string;
 	ButtonBackground?: string;
-	children: string;
+	children: React.ReactNode | string;
 	onClick?: () => void;
 }
 
