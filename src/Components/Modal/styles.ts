@@ -14,6 +14,17 @@ export const StyledModal = styled.div`
 
 	background-color: #33333355;
 
+	@keyframes ModalAppear {
+		0% {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
 	.modal {
 		margin: 0 auto;
 
@@ -24,6 +35,8 @@ export const StyledModal = styled.div`
 		background-color: var(--color-gray-0);
 		box-shadow: 0 0 5px var(--color-gray-300);
 		border-radius: var(--radius);
+
+		animation: ModalAppear 0.3s ease;
 
 		.cart_title {
 			padding: 1.2rem;

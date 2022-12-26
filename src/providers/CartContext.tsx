@@ -42,10 +42,6 @@ export const CartProvider = ({ children }: iCartProvider) => {
 
 	const [showModal, setShowModal] = useState<boolean>(false);
 
-	// useEffect(() => {
-	// 	console.log(cart);
-	// }, [cart]);
-
 	const addProductInCart = ({
 		id,
 		img,
