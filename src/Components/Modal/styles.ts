@@ -28,7 +28,7 @@ export const StyledModal = styled.div`
 	.modal {
 		margin: 0 auto;
 
-		width: 100%;
+		width: 98%;
 		max-width: 450px;
 		height: fit-content;
 

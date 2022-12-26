@@ -1,17 +1,26 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+
 import { Container } from "../../assets/styles/Container";
 import { H1, H3 } from "../../assets/styles/Typography";
+import { StyledFormPage } from "../../assets/styles/Form/FormPage/styles";
+import { StyledFormContainer } from "../../assets/styles/Form/FormContainer/styles";
+import { StyledFormHead } from "../../assets/styles/Form/FormHead/styles";
+
 import { RegisterForm } from "./RegisterForm";
 
-import { StyledFormContainer } from "../../assets/styles/Form/FormContainer/styles";
-
-import { StyledFormHead } from "../../assets/styles/Form/FormHead/styles";
+import { UserContext } from "../../providers/UserContext";
 
 import kenzieburguer from "../../assets/imgs/kenzieburguer500x500.png";
 import bagicon from "../../assets/imgs/bagicon.svg";
-import { StyledFormPage } from "../../assets/styles/Form/FormPage/styles";
 
 export const Register = () => {
+	const { loading } = useContext(UserContext);
+
+	if (loading) {
+		return <H1>Carregando...</H1>;
+	}
+
 	return (
 		<Container Alignment="center">
 			<StyledFormPage>

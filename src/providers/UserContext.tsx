@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api/api";
 
@@ -38,6 +38,8 @@ interface iUserContext {
 	userLogin: (formData: iFormLoginData) => void;
 	userRegister: (formData: iFormRegisterData) => void;
 	userLogout: () => void;
+	loading: boolean;
+	setLoading: React.Dispatch<SetStateAction<boolean>>;
 }
 
 export const UserContext = createContext({} as iUserContext);
@@ -45,7 +47,8 @@ export const UserContext = createContext({} as iUserContext);
 export const UserProvider = ({ children }: iUserProvider) => {
 	const [user, setUser] = useState<iUser | null>(null),
 		[products, setProducts] = useState<iProducts[]>([]),
-		[filter, setFilter] = useState("todos");
+		[filter, setFilter] = useState("todos"),
+		[loading, setLoading] = useState(true);
 
 	const navigate = useNavigate();
 
@@ -55,6 +58,7 @@ export const UserProvider = ({ children }: iUserProvider) => {
 				userData = JSON.parse(localStorage.getItem("@USER") as string) || null;
 
 			if (!token) {
+				setLoading(false);
 				return;
 			}
 
@@ -72,6 +76,8 @@ export const UserProvider = ({ children }: iUserProvider) => {
 			} catch (error) {
 				console.log(error);
 				localStorage.clear();
+			} finally {
+				setLoading(false);
 			}
 		};
 
@@ -143,6 +149,8 @@ export const UserProvider = ({ children }: iUserProvider) => {
 				userLogin,
 				userRegister,
 				userLogout,
+				loading,
+				setLoading,
 			}}
 		>
 			{children}

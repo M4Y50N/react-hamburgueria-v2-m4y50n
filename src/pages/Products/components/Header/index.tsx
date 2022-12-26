@@ -16,6 +16,7 @@ import trash from "../../../../assets/imgs/trash.svg";
 import logout from "../../../../assets/imgs/logout.svg";
 import cartIcon from "../../../../assets/imgs/cart.svg";
 import search from "../../../../assets/imgs/search.svg";
+import { replaceDotComma } from "../../../../utils";
 
 export const Header = () => {
 	const { userLogout, filterSearch } = useContext(UserContext);
@@ -33,10 +34,6 @@ export const Header = () => {
 	} = useContext(CartContext);
 
 	const [showSearch, setShowSearch] = useState(false);
-
-	useEffect(() => {
-		console.log(showSearch);
-	}, [showSearch]);
 
 	return (
 		<StyledHeader>
@@ -57,35 +54,29 @@ export const Header = () => {
 							<>
 								<div className="cart_body">
 									<StyledCartList>
-										{cart.map((product, i) => {
+										{cart.map(({ id, img, name, price, count }, i) => {
 											return (
 												<li key={i}>
 													<div className="cart_product_head">
-														<img src={product.img} alt={product.name} />
+														<img src={img} alt={name} />
 													</div>
 													<div className="cart_product_body">
-														<H3>{product.name}</H3>
+														<H3>{name}</H3>
 														<H3 Color="var(--color-primary)">
-															R$ {product.price}
+															R$ {replaceDotComma(price)}
 														</H3>
 														<div className="product_count">
 															<button
 																onClick={() => {
-																	decreaseProductCart(
-																		product.id,
-																		product.price
-																	);
+																	decreaseProductCart(id, price);
 																}}
 															>
 																-
 															</button>
-															<p>{product.count}</p>
+															<p>{count}</p>
 															<button
 																onClick={() => {
-																	increaseProductCart(
-																		product.id,
-																		product.price
-																	);
+																	increaseProductCart(id, price);
 																}}
 															>
 																+
@@ -94,7 +85,7 @@ export const Header = () => {
 													</div>
 													<Button
 														onClick={() => {
-															rmvProductCart(product.id);
+															rmvProductCart(id);
 														}}
 													>
 														<img src={trash} alt="trash" />
@@ -107,7 +98,7 @@ export const Header = () => {
 								<StyledTotal>
 									<div className="total">
 										<p>Total</p>
-										<p>R$ {total.toFixed(2)}</p>
+										<p>R$ {replaceDotComma(total)}</p>
 									</div>
 
 									<Button

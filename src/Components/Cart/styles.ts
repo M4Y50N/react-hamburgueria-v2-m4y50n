@@ -76,7 +76,7 @@ export const StyledCartList = styled.ul`
 
 		> button {
 			position: absolute;
-			top: 10px;
+			/* top: 15px; */
 			right: 0;
 
 			padding: 0.7rem;
