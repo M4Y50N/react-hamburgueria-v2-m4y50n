@@ -89,3 +89,27 @@ export const StyledCartList = styled.ul`
 		}
 	}
 `;
+
+export const StyledTotal = styled.div`
+	padding: 2rem;
+
+	display: flex;
+	flex-direction: column;
+
+	.total {
+		padding: 2rem 0.7rem;
+
+		display: flex;
+		justify-content: space-between;
+
+		border-top: 0.2rem solid var(--color-gray-100);
+
+		p {
+			font-weight: 600;
+
+			:first-child {
+				color: var(--color-gray-600);
+			}
+		}
+	}
+`;

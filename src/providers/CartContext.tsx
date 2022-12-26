@@ -81,8 +81,10 @@ export const CartProvider = ({ children }: iCartProvider) => {
 
 		const item = cart.find((item) => item.id === id);
 
-		setTotal(total - item?.count * item?.price);
-		// setCart(updateCart);
+		if (item !== undefined) {
+			setTotal(total - item?.count * item?.price);
+		}
+		setCart(updateCart);
 	};
 
 	const increaseProductCart = (id: number, price: number) => {

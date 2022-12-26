@@ -11,7 +11,22 @@ export const StyledHeader = styled.header`
 		align-items: center;
 		justify-content: space-between;
 
-		img {
+		.buttons {
+			display: flex;
+			align-items: center;
+			column-gap: 2rem;
+
+			button {
+				padding: 0;
+				background-color: transparent;
+
+				:hover {
+					filter: brightness(1.3);
+				}
+			}
+		}
+
+		> img {
 			width: 100px;
 		}
 	}

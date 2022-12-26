@@ -3,13 +3,18 @@ import kenzieburguer from "../../../../assets/imgs/kenzieburguer.png";
 import { Container } from "../../../../assets/styles/Container";
 import { H3, Headline } from "../../../../assets/styles/Typography";
 import { Button } from "../../../../Components/Buttons";
-import { StyledCartList } from "../../../../Components/Cart/styles";
+import {
+	StyledCartList,
+	StyledTotal,
+} from "../../../../Components/Cart/styles";
 import { Modal } from "../../../../Components/Modal";
 import { CartContext } from "../../../../providers/CartContext";
 import { UserContext } from "../../../../providers/UserContext";
 import { StyledHeader } from "./styles";
 
 import trash from "../../../../assets/imgs/trash.svg";
+import logout from "../../../../assets/imgs/logout.svg";
+import cartIcon from "../../../../assets/imgs/cart.svg";
 
 export const Header = () => {
 	const { userLogout } = useContext(UserContext);
@@ -20,6 +25,7 @@ export const Header = () => {
 		total,
 		setTotal,
 		cart,
+		setCart,
 		increaseProductCart,
 		decreaseProductCart,
 		rmvProductCart,
@@ -40,9 +46,9 @@ export const Header = () => {
 								X
 							</button>
 						</div>
-						<div className="cart_body">
-							{cart.length ? (
-								<>
+						{cart.length ? (
+							<>
+								<div className="cart_body">
 									<StyledCartList>
 										{cart.map((product, i) => {
 											return (
@@ -82,7 +88,6 @@ export const Header = () => {
 													<Button
 														onClick={() => {
 															rmvProductCart(product.id);
-															setTotal(total - product.price);
 														}}
 													>
 														<img src={trash} alt="trash" />
@@ -91,31 +96,48 @@ export const Header = () => {
 											);
 										})}
 									</StyledCartList>
-									{total}
-								</>
-							) : (
+								</div>
+								<StyledTotal>
+									<div className="total">
+										<p>Total</p>
+										<p>R$ {total}</p>
+									</div>
+
+									<Button
+										ButtonBackground="gray"
+										onClick={() => {
+											setCart([]);
+											setTotal(0);
+										}}
+									>
+										Remover Todos
+									</Button>
+								</StyledTotal>
+							</>
+						) : (
+							<div className="cart_body">
 								<div className="empty">
 									<H3>Seu carrinho está vazio</H3>
 									<Headline>Adicione itens</Headline>
 								</div>
-							)}
-						</div>
+							</div>
+						)}
 					</div>
 				</Modal>
 			)}
 			<Container>
 				<img src={kenzieburguer} alt="kenzie burguer" />
 
-				<div>
+				<div className="buttons">
 					<Button
 						onClick={() => {
 							setShowModal(true);
 						}}
 					>
-						Cart
+						<img src={cartIcon} alt="cart icon" />
 					</Button>
 					<Button ButtonSize="medium" onClick={userLogout}>
-						Logout
+						<img src={logout} alt="logout" />
 					</Button>
 				</div>
 			</Container>
